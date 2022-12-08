@@ -1,0 +1,65 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Petits Plats</title>
+    <link rel="icon" type="image/png" href="./assets/favico.svg">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="flex">
+        <img class="header-logo" src="./assets/logo.png" alt="Logo les petits plats" tabindex="1">
+    </header>
+    
+    <main class="flex">
+        <section class="container-large">
+            <!-- SEARCH BAR -->
+            <div id="search-bar">
+                <input id="search-input" type="text" placeholder="Rechercher une recette">
+                 <button>
+                    <img src="./assets/magnifying-glass.svg" alt="icon loupe" />
+                </button>
+            </div>
+    
+            <!-- SORT CONTAINER -->
+            <div id="sort-container">
+                <div id="tag-result"></div>
+    
+                <div class="sort-bloc flex">
+                    <div class="btn btn-primary">
+                        <p class="btn-title">Ingrédients</p>
+                        <input class="sort-input" type="text" placeholder="Rechercher un ingrédient" >
+                        <button class="btn-arrow">
+                            <img src="./assets/arrow.svg" alt="icon flèche" />
+                        </button>
+                    </div>
+    
+                    <div class="sort-bloc">
+                        <div class="btn btn-secondary">
+                            <p class="btn-title">Appareils</p>
+                            <input class="sort-input" type="text" placeholder="Rechercher un appareil" >
+                            <button class="btn-arrow">
+                                <img src="./assets/arrow.svg" alt="icon flèche" />
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="sort-bloc">
+                        <div class="btn btn-tiertiary">
+                            <p class="btn-title">Ustensiles</p>
+                            <input class="sort-input" type="text" placeholder="Rechercher un ustensile de cuisine" >
+                            <button class="btn-arrow">
+                                <img src="./assets/arrow.svg" alt="icon flèche" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+        </section>
+    </main>
+
+</body>
+</html>
