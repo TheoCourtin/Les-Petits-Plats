@@ -1,65 +1,92 @@
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les Petits Plats</title>
-    <link rel="icon" type="image/png" href="./assets/favico.svg">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta name="description" content="Site de recette de cuisine">
+    <title>Les petites plats</title>
+    <link rel="icon" type="image/png" href="images/Vector.png">
+    <script src="https://kit.fontawesome.com/530869a928.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-    <header class="flex">
-        <img class="header-logo" src="./assets/logo.png" alt="Logo les petits plats" tabindex="1">
+    <header><img src="images/Vector.png" alt="Logo Les petits plats">
+        <h1>Les petits plats</h1>
     </header>
-    
-    <main class="flex">
-        <section class="container-large">
-            <!-- SEARCH BAR -->
+    <main>
+        <section id="search-section">
             <div id="search-bar">
-                <input id="search-input" type="text" placeholder="Rechercher une recette">
-                 <button>
-                    <img src="./assets/magnifying-glass.svg" alt="icon loupe" />
-                </button>
+                <input type="text" id="main-search" placeholder="Rechercher une recette">
+                <button type="submit" class="search-btn-icon"><i class="fas fa-2x fa-search"></i></button>
             </div>
-    
-            <!-- SORT CONTAINER -->
-            <div id="sort-container">
-                <div id="tag-result"></div>
-    
-                <div class="sort-bloc flex">
-                    <div class="btn btn-primary">
-                        <p class="btn-title">Ingrédients</p>
-                        <input class="sort-input" type="text" placeholder="Rechercher un ingrédient" >
-                        <button class="btn-arrow">
-                            <img src="./assets/arrow.svg" alt="icon flèche" />
-                        </button>
-                    </div>
-    
-                    <div class="sort-bloc">
-                        <div class="btn btn-secondary">
-                            <p class="btn-title">Appareils</p>
-                            <input class="sort-input" type="text" placeholder="Rechercher un appareil" >
-                            <button class="btn-arrow">
-                                <img src="./assets/arrow.svg" alt="icon flèche" />
-                            </button>
+            <div id="search-tag"></div>
+            <div id="advanced-search-container">
+
+                <div id="ingredients-search" class="advanced-search-btn" data-type="ingrédients">
+                    <div class="search-btn-align">
+
+                        <input type="text" name="ingredients" class="input-tag" id="ingredients" placeholder="Ingrédients">
+
+                        <div class="search-btn">
+                            <i class="fas fa-chevron-down" id="ingredients-chevron"></i>
                         </div>
                     </div>
-    
-                    <div class="sort-bloc">
-                        <div class="btn btn-tiertiary">
-                            <p class="btn-title">Ustensiles</p>
-                            <input class="sort-input" type="text" placeholder="Rechercher un ustensile de cuisine" >
-                            <button class="btn-arrow">
-                                <img src="./assets/arrow.svg" alt="icon flèche" />
-                            </button>
-                        </div>
+                    <div id="ingredients-container" class="ul-container">
+                        <ul id="ingredients-list" class="li-list"></ul>
                     </div>
                 </div>
+
+                <div id="appareils-search" class="advanced-search-btn" data-type="appareils">
+                    <div class="search-btn-align">
+
+                        <input type="text" name="appareils" id="appareils" class="input-tag" placeholder="Appareils">
+
+                        <div class="search-btn">
+                            <i class="fas fa-chevron-down" id="appareils-chevron"></i>
+                        </div>
+                    </div>
+                    <div id="appareils-container" class="ul-container">
+                        <ul id="appareils-list" class="li-list"></ul>
+                    </div>
+                </div>
+
+                <div id="ustensiles-search" class="advanced-search-btn" data-type="ustensiles">
+                    <div class="search-btn-align">
+
+                        <input type="text" name="ustensiles" id="ustensiles" class="input-tag" placeholder="Ustensiles">
+
+                        <div class="search-btn">
+                            <i class="fas fa-chevron-down" id="ustensiles-chevron"></i>
+                        </div>
+                    </div>
+                    <div id="ustensiles-container" class="ul-container">
+                        <ul id="ustensiles-list" class="li-list"></ul>
+                    </div>
+                </div>
+
+
+
             </div>
-    
-    
+        </section>
+        <section id="recipes-container">
+
+
+
+
+
+
+
         </section>
     </main>
-
+    <script src="script/factory/recipe.js" defer></script>
+    <script src="script/index.js" type="module"></script>
 </body>
+
 </html>
