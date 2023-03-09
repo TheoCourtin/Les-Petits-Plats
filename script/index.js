@@ -16,6 +16,8 @@ let tagArrayselected = [];
 let repetitionIngredients = [];
 let filterrecipes = [];
 let newfilterrecipes = [];
+let filteredGlobal = [];
+let searchString="";
 
 /**
  *
@@ -312,8 +314,11 @@ function RemoveClassActive(button) {
     filterrecipes = recipes;
   } else {
     filterrecipes = filterTools(recipes, tagArrayselected);
-  }  
-  updatemedia(filterrecipes);
+  }
+  // filtre global
+  filteredGlobal=searchGlobal(filterrecipes);
+  updatemedia(filteredGlobal);  
+  
 }
 
 
@@ -335,6 +340,8 @@ function filterTools(recipesDetails, toolsSelected) {
     .filter(recipe => filterIngredient(recipe, ingredients))
     .filter(recipe => filterUstensil(recipe, ustensils)) 
     .filter(recipe => filterAppliance(recipe, appareils));
+
+    
    
        
 }
@@ -378,16 +385,16 @@ function searchIngredient() {
     openList(cssmodif[0]);
     ingredientsInput.placeholder = `Rechercher un ingrédient`;
     let ingredientString = uniformString(e.target.value);
-    const array = filterrecipes.length == 0 ? recipes : filterrecipes;
+    const array = filteredGlobal.length == 0 ? recipes : filteredGlobal;
     if (ingredientString.length >= 3) {
-      filterrecipes = array.filter((recipe) => {
+      filteredGlobal = array.filter((recipe) => {
         return recipe.ingredients.some((el) =>
           uniformString(el.ingredient).includes(ingredientString)
         );
       });
-      updatemedia(filterrecipes);
+      updatemedia(filteredGlobal);
       ingredientsInput.placeholder = `Ingrédients`;
-      console.log(filterrecipes);
+      console.log(filteredGlobal);
     }
   });
 }
@@ -397,14 +404,14 @@ function searchAppareils() {
     openList(cssmodif[1]);
     ingredientsInput.placeholder = `Rechercher un ingrédient`;
     let appareilsString = uniformString(e.target.value);
-    const array = filterrecipes.length == 0 ? recipes : filterrecipes;
+    const array = filteredGlobal.length == 0 ? recipes : filteredGlobal;
     if (appareilsString.length >= 3) {
-      filterrecipes = array.filter((recipe) => {
+      filteredGlobal = array.filter((recipe) => {
         return uniformString(recipe.appliance).includes(appareilsString);
       });
-      updatemedia(filterrecipes);
+      updatemedia(filteredGlobal);
       appareilsInput.placeholder = `Appareils`;
-      console.log(filterrecipes);
+      console.log(filteredGlobal);
     }
   });
 }
@@ -414,16 +421,16 @@ function searchUstensils() {
     openList(cssmodif[2]);
     ingredientsInput.placeholder = `Rechercher un ingrédient`;
     let ustensilsString = uniformString(e.target.value);
-    const array = filterrecipes.length == 0 ? recipes : filterrecipes;
+    const array = filteredGlobal.length == 0 ? recipes : filteredGlobal;
     if (ustensilsString.length >= 3) {
-      filterrecipes = array.filter((recipe) => {
+      filteredGlobal = array.filter((recipe) => {
         return recipe.ustensils.some((el) =>
           uniformString(el).includes(ustensilsString)
         );
       });
-      updatemedia(filterrecipes);
+      updatemedia(filteredGlobal);
       ustensilsInput.placeholder = `Ustensils`;
-      console.log(filterrecipes);
+      console.log(filteredGlobal);
     }
   });
 }
@@ -431,25 +438,27 @@ function searchUstensils() {
 //main search function, with or without tag;
 function searchMainBar() {
   mainSearchinput.addEventListener("keyup", (e) => {
-    let filteredGlobal = [];
-    const searchString = uniformString(e.target.value);
+    
+    searchString = uniformString(e.target.value);
     
     if (searchString.length >= 3) {
       if (tagArrayselected.length != 0) {
         filteredGlobal = filterrecipes.filter((recipe) => {
           return (
-            uniformString(recipe.name).includes(searchString) ||
+            uniformString(recipe.name).includes(searchString) &&
             uniformString(recipe.description)
               
-              .includes(searchString) ||
+              .includes(searchString) &&
             recipe.ingredients.some((el) =>
               uniformString(el.ingredient).includes(searchString)
             )
           );
         });
         updatemedia(filteredGlobal);
+        
       }
       if (tagArrayselected.length === 0) {
+        filteredGlobal= [];
         console.time();
 
         //algo alternatif
@@ -494,6 +503,22 @@ function searchMainBar() {
       }
     }
   });
+}
+
+// filtre globale
+function searchGlobal(tofilter) { 
+  let filtered = tofilter.filter((recipe) => {
+    return (
+      uniformString(recipe.name).includes(searchString) ||
+      uniformString(recipe.description)
+       
+        .includes(searchString) ||
+      recipe.ingredients.some((el) =>
+        uniformString(el.ingredient).includes(searchString)
+      )
+    );
+  });
+  return filtered;
 }
 
 //font normalization function
